@@ -10,6 +10,9 @@ import { DataTable } from "./_components/table";
 import { ColumnDef } from "@tanstack/react-table";
 import { sendData } from "@/actions/mail";
 import { toast } from "sonner";
+import { Edit, Trash } from "lucide-react";
+import { DeleteButton } from "./_components/delete-button";
+import { UpdateButton } from "./_components/update-button";
 
 export default function Home() {
   type Data = {
@@ -85,7 +88,21 @@ export default function Home() {
     {
       accessorKey: "hobbies",
       header: "Hobbies",
-    }
+    },
+    {
+      id: "Delete",
+      header: "Delete",
+      cell: ({ row }) => (
+        <DeleteButton id={row.original._id} />
+      ),
+    },
+    {
+      id: "Update",
+      header: "Update",
+      cell: ({ row }) => (
+        <UpdateButton id={row.original._id} />
+      ),
+    },
   ]
 
   useEffect(() => {
@@ -101,13 +118,13 @@ export default function Home() {
       alert('Please select atleast one entry');
       return;
     }
-    try{
+    try {
       sendData(selected);
-      
+
       toast.success('Email sent successfully');
 
     }
-    catch(e){
+    catch (e) {
       toast.error('Error sending email');
     }
   }

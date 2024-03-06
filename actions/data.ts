@@ -33,9 +33,37 @@ export const postData = async ({
     return newData;
 }
 
+export const getSingleData = async (id: string) => {
+    await dbConnect();
+    const singleData = await data.findById(id, { _id: 1, name: 1, phoneNumber: 1, email: 1, hobbies: 1 });
+    return singleData;
+}
+
 export const getData = async () => {
     await dbConnect();
     const storedData = await data.find({}, { _id: 1, name: 1, phoneNumber: 1, email: 1, hobbies: 1 });
     console.log(storedData);
     return storedData;
+}
+
+export const deleteData = async (id: string) => {
+    await dbConnect();
+    const deletedData = await data.findByIdAndDelete(id);
+    return deletedData;
+}
+
+export const updateData = async (id: string, {
+    name,
+    phoneNumber,
+    email,
+    hobbies
+}: dataProps) => {
+    await dbConnect();
+    const updatedData = await data.findByIdAndUpdate(id, {
+        name,
+        phoneNumber,
+        email,
+        hobbies
+    });
+    return updatedData;
 }

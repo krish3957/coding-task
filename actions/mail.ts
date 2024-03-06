@@ -23,7 +23,7 @@ export const sendData = (data: dataProps[]) => {
         text: JSON.stringify(data)
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
+    transporter.sendMail(mailOptions, function (error:Error, info:any) {
         if (error) {
             console.log(error);
         } else {

@@ -20,7 +20,7 @@ export function FormDialog() {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
-    const [hobbies, setHobbies] = useState([]);
+    const [hobbies, setHobbies] = useState<string[]>([]);
     const closeRef = useRef<HTMLButtonElement>(null);
     const handleSend = () => {
         postData({
@@ -86,7 +86,8 @@ export function FormDialog() {
                         </Label>
                         <Input id="hobbies"
                             onChange={(e) => {
-                                setHobbies(e.target.value.split(','));
+                                const value = e.target.value.split(",");
+                                setHobbies(value);
                             }}
                             placeholder="Cricket,Lifting.." className="col-span-3" required />
                     </div>

@@ -19,7 +19,7 @@ export default function Home() {
     hobbies: string[]
   }
   const [selectAll, setSelectAll] = useState(false);
-  const [tableEntries, setTableEntries] = useState([]);
+  const [tableEntries, setTableEntries] = useState<Data[]>([]);
   const [selected, setSelected] = useState<Data[]>([]);
   const columns: ColumnDef<Data>[] = [
     {

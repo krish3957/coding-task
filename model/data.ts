@@ -1,16 +1,10 @@
-import mongoose,{ Schema } from "mongoose";
-interface dataProps{
-    name:string;
-    phoneNumber:string;
-    email:string;
-    hobbies:string[];
-}
+import mongoose from "mongoose";
 
-const dataSchema = new mongoose.Schema<dataProps>({
+const dataSchema = new mongoose.Schema({
     name:{type:String, required:true},
     phoneNumber:{type:String,required:true},
     email:{type:String,required:true},
-    hobbies:{type:Array,required:true}
+    hobbies:{type:Array<String>(),required:true}
 },
     {timestamps:true}
 )
